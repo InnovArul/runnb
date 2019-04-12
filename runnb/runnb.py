@@ -34,6 +34,7 @@ def runnb(nb_path, allow_errors=False, no_stdio=False, to_file=None):
             nb.cells.insert(0, cell)
             '''
             for cell in nb.cells:
+                if cell.cell_type == 'code':
                     cell.source = STDIO_CODE + cell.source
                     break
         out = ep.preprocess(nb, {'metadata':{'path':os.getcwd()}})
