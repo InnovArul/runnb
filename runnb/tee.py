@@ -18,3 +18,7 @@ class Tee:
     def flush(self):
         for file in self._files:
             file.flush()
+
+    def close(self):
+        for file in self._files:
+            file.close()

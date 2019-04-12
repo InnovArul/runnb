@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import getopt, sys, os
@@ -34,12 +34,11 @@ def runnb(nb_path, allow_errors=False, no_stdio=False, to_file=None):
             nb.cells.insert(0, cell)
             '''
             for cell in nb.cells:
-                if cell.cell_type == 'code':
                     cell.source = STDIO_CODE + cell.source
                     break
         out = ep.preprocess(nb, {'metadata':{'path':os.getcwd()}})
     except CellExecutionError:
-        print 'Error executing the notebook "%s".\n\n' % nb_path
+        print('Error executing the notebook "%s".\n\n' % nb_path)
         raise
     finally:
         if to_file:
@@ -65,14 +64,14 @@ def runnb(*args, **kwargs):
 '''
 
 def usage():
-    print 'Usage:'
-    print sys.argv[0], '[options] <path/to/notebook.ipynb>'
-    print 'Options:'
-    print '-h --help', '\t'*4, 'Display help message.'
-    print '-e --allow-error', '\t'*3, 'Allow error during single cell and continue running.'
-    print '-n --no-stdio', '\t'*4, 'Don\'t recover STDIO to command line. (You may not see printed messages.)'
-    print '-a --allow-not-trusted', '\t'*3, 'Run the notebook even not trusted.'
-    print '-t --to=<path/to/notebook.out.ipynb>', '\t'*1, 'Save the executed notebook to a specific file.'
+    print('Usage:')
+    print(sys.argv[0], '[options] <path/to/notebook.ipynb>')
+    print('Options:')
+    print('-h --help', '\t'*4, 'Display help message.')
+    print('-e --allow-error', '\t'*3, 'Allow error during single cell and continue running.')
+    print('-n --no-stdio', '\t'*4, 'Don\'t recover STDIO to command line. (You may not see printed messages.)')
+    print('-a --allow-not-trusted', '\t'*3, 'Run the notebook even not trusted.')
+    print('-t --to=<path/to/notebook.out.ipynb>', '\t'*1, 'Save the executed notebook to a specific file.')
 
 def main():
     warnings.filterwarnings('error', '.*trusted.*', DeprecationWarning, __name__)
@@ -107,15 +106,15 @@ def main():
         nb_path = args[0]
     except getopt.GetoptError as err:
         # print help information and exit:
-        print 'Error:'
-        print str(err), '\n'  # will print something like "option -a not recognized"
+        print('Error:')
+        print(str(err), '\n')  # will print something like "option -a not recognized")
         usage()
         sys.exit(2)
         
     try:
         runnb(nb_path, allow_errors, no_stdio, to_file)
     except DeprecationWarning as err:
-        print str(err), 'If you still want to run the not-trusted notebook, try `--allow-not-trusted` option.'
+        print(str(err), 'If you still want to run the not-trusted notebook, try `--allow-not-trusted` option.')
 
 if __name__ == '__main__':
     main()
