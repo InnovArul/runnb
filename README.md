@@ -1,5 +1,7 @@
 # runnb - The run-notebook script
 
+[![PyPI version](https://badge.fury.io/py/runnb.svg)](https://badge.fury.io/py/runnb) [![Build Status](https://travis-ci.org/InnovArul/runnb.svg?branch=master)](https://travis-ci.org/InnovArul/runnb)
+
 `runnb` is a script to run `jupyter` notebooks from the command-line.
 It is a [`nbconvert`](http://nbconvert.readthedocs.io) API wrapper.
 Notes on executing notebooks can be found [here](http://nbconvert.readthedocs.io/en/latest/execute_api.html).
